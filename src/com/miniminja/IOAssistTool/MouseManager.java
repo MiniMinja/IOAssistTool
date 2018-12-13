@@ -77,8 +77,8 @@ public class MouseManager implements MouseInputListener{
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		mouseLoc[0] = e.getXOnScreen();
-		mouseLoc[1] = e.getYOnScreen();
+		mouseLoc[0] = e.getX();
+		mouseLoc[1] = e.getY();
 	}
 
 }

@@ -1,12 +1,39 @@
 package com.miniminja.IOAssistTool;
 
 import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
+import com.miniminja.IOAssistTool.UI.ImageUI;
 import com.miniminja.IOAssistTool.UI.UIManager;
 
 import Mindow.*;
 
 public class IOToolTester {
+	
+	public static class SimpleManager extends UIManager{
+
+		public void init(String uimapPath) {
+			super.init(uimapPath);
+			try {
+				BufferedReader file = new BufferedReader(new FileReader(uimapPath));
+				int i = Integer.parseInt(file.readLine());
+				for(int x = 0;x<i;x++) {
+					file.readLine();
+					String[] line = file.readLine().trim().split(",");
+					map.add(
+							new ImageUI(ImageUI.getImage(line[0]), 
+							Integer.parseInt(line[1]), Integer.parseInt(line[2]),
+							Integer.parseInt(line[3]),Integer.parseInt(line[4])));
+				}
+			}catch(IOException e) {
+				System.out.println("Cannot find the file");
+			}
+		}
+		
+	}
+	
 	public static class UIDrawer extends Drawer{
 		private UIManager manager;
 		
@@ -31,8 +58,9 @@ public class IOToolTester {
 		Mindow window = Mindow.getDefault();
 		window.addKeyListener(tool.getKeyManager());
 		window.addMouseInputListener(tool.getMouseManager());
-		UIManager uimanager = new UIManager("UIMap/battle.uim");
-		UIDrawer uidrawer = new UIDrawer(uimanager);
+		SimpleManager sm = new SimpleManager();
+		sm.init("UIMap/battle.uim");
+		UIDrawer uidrawer = new UIDrawer(sm);
 		Drawer.setDrawer(uidrawer);
 		Thread job = new Thread(new Runnable() {
 			public void run() {

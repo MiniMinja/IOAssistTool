@@ -6,37 +6,30 @@ import java.util.ArrayList;
 
 import java.awt.Graphics;
 
-public class UIManager {
+public abstract class UIManager {
 	private ArrayList<UIObject> map;
+	private boolean initialized;
 	
-	public UIManager(String filePath) {
+	public UIManager() {
 		map = new ArrayList<UIObject>();
-		try (BufferedReader br = new BufferedReader(new FileReader(filePath))){
-			int amount = Integer.parseInt(br.readLine());
-			for(int i = 0;i<amount;i++) {
-				String type = br.readLine();
-				String[] paramsStr = br.readLine().split(",");
-				if(type.startsWith("Default")) {
-					int[] params = new int[paramsStr.length];
-					for(int j = 0;j<params.length;j++) {
-						params[j] = Integer.parseInt(paramsStr[j]);
-					}
-					map.add(new DefaultUI(params[0], params[1], params[2], params[3]));
-				}
-				else {
-					System.out.println(type+" is undefined on "+i+". Not created");
-				}
-			}
-		}catch(IOException e) {
-			System.out.println("Could not find UIMap files!");
-		}
+		initialized = false;
 	}
 	
+	public abstract void init(String uimapPath);
+	
 	public void render(Graphics g) {
+		if(!initialized) {
+			System.out.println("Run init() after defining the location varaible!");
+			return;
+		}
 		for(UIObject o: map) o.render(g);
 	}
 	
 	public void tick() {
+		if(!initialized) {
+			System.out.println("Run init() after defining the location varaible!");
+			return;
+		}
 		for(UIObject o: map) o.tick();
 	}
 }

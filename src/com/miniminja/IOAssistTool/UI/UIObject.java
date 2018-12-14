@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import com.miniminja.IOAssistTool.MouseManager;
 /**
  * all possible UIObjects
- * 	Text
  * 	Image
  * 	Blank
  *	Default

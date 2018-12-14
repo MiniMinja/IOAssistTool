@@ -16,8 +16,9 @@ public class IOToolTester {
 
 		public void init(String uimapPath) {
 			super.init(uimapPath);
-			try {
+			try (
 				BufferedReader file = new BufferedReader(new FileReader(uimapPath));
+					){
 				int i = Integer.parseInt(file.readLine());
 				for(int x = 0;x<i;x++) {
 					file.readLine();

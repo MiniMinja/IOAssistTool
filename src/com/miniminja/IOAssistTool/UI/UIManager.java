@@ -1,7 +1,5 @@
 package com.miniminja.IOAssistTool.UI;
 
-import java.io.*;
-
 import java.util.ArrayList;
 
 import java.awt.Graphics;

@@ -20,10 +20,11 @@ public class KeyManager implements KeyListener{
 	private KeyManager() {
 		keys_pressed = new HashMap<String, Boolean>();
 		
-		keys_pressed.put("w", false);
-		keys_pressed.put("a", false);
-		keys_pressed.put("s", false);
-		keys_pressed.put("d", false);
+		for(char i = 'a';i<='z';i++) {
+			keys_pressed.put(""+i, false);
+		}
+		keys_pressed.put(".", false);
+		keys_pressed.put(",", false);
 	}
 	
 	public static KeyManager getInstance() {
@@ -36,22 +37,7 @@ public class KeyManager implements KeyListener{
 			System.out.println("Key Manager not initialized. Run getInstance()!");
 			return;
 		}
-		switch(e.getKeyCode()) {
-		
-			case KeyEvent.VK_W:
-				keys_pressed.put("w", true);
-				break;
-			case KeyEvent.VK_A:
-				keys_pressed.put("a", true);
-				break;
-			case KeyEvent.VK_S:
-				keys_pressed.put("s", true);
-				break;
-			case KeyEvent.VK_D:
-				keys_pressed.put("d", true);
-				break;
-		
-		}
+		keys_pressed.put(""+e.getKeyChar(), true);
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -59,22 +45,7 @@ public class KeyManager implements KeyListener{
 			System.out.println("Key Manager not initialized. Run getInstance()!");
 			return;
 		}
-		switch(e.getKeyCode()) {
-		
-			case KeyEvent.VK_W:
-				keys_pressed.put("w", false);
-				break;
-			case KeyEvent.VK_A:
-				keys_pressed.put("a", false);
-				break;
-			case KeyEvent.VK_S:
-				keys_pressed.put("s", false);
-				break;
-			case KeyEvent.VK_D:
-				keys_pressed.put("d", false);
-				break;
-		
-		}
+		keys_pressed.put(""+e.getKeyChar(), false);
 	}
 
 	public void keyTyped(KeyEvent arg0) {

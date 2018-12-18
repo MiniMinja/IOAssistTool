@@ -74,6 +74,7 @@ public class IOToolTester {
 						if(KeyManager.isPressed("a")) System.out.println("A Pressed!");
 						if(KeyManager.isPressed("s")) System.out.println("S Pressed!");
 						if(KeyManager.isPressed("d")) System.out.println("D Pressed!");
+						if(KeyManager.isPressed(".")) System.out.println(". Pressed!");
 						
 						//System.out.println(MouseManager.getXLoc() + "," + MouseManager.getYLoc());
 						//System.out.println("Clicked 1: "+MouseManager.clicked1());

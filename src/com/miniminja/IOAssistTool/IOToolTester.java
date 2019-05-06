@@ -54,8 +54,6 @@ public class IOToolTester {
 	
 	public static void main(String[] args) {
 		IOAssistTool tool = new IOAssistTool();
-		tool.initKeyManager();
-		tool.initMouseManager();
 		Mindow window = Mindow.getDefault();
 		window.addKeyListener(tool.getKeyManager());
 		window.addMouseInputListener(tool.getMouseManager());

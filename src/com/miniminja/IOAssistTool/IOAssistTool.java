@@ -8,6 +8,11 @@ public class IOAssistTool {
 	private KeyManager key_manager;
 	private MouseManager mouse_manager;
 	
+	public IOAssistTool() {
+		initKeyManager();
+		initMouseManager();
+	}
+	
 	public void initKeyManager() {
 		key_manager = KeyManager.getInstance();
 	}
